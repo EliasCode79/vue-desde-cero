@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Intro a Vue</title>
+	</head>
+	<body>
+		<div id="myApp">
+			<h1>Quotes the Batman <small>{{newQuote}}</small></h1>
+			<input type="text" v-model="newQuote" v-on:keypress.enter="addQuote" />
+
+			<hr />
+			<ul>
+				<li v-for="({quote, author}, index) in quotes">
+					<span>{{index +1}} {{quote}}</span>
+					<!-- v-if si el valor es falso no muestranada, v-show si el valor es falso imprime el html pero lo oculta, mientras q el if no lo imprime. -->
+					<!-- <blockquote v-if="author">- {{author}}</blockquote> -->
+					<blockquote v-show="author">- {{author}}</blockquote>
+				</li>
+			</ul>
+		</div>
+
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>
