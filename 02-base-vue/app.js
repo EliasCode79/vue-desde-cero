@@ -16,13 +16,16 @@ const quotes = [
 	{ quote: 'Yes, father. I shall become a bat.', author: 'Bruce Wayne/Batman, Batman: Year One' },
 ];
 
+// este es un compomente con opcion API
 const app = Vue.createApp({
+	// la data crea un objeto reactivo
 	data() {
 		return {
-			quotes,
+			quotes, // quotes: quotes,
 			newQuote: 'Hola mundo',
 		};
 	},
+	// metodos q necesitemos
 	methods: {
 		addQuote(event) {
 			this.quotes.unshift({ quote: this.newQuote });
@@ -38,4 +41,5 @@ const app = Vue.createApp({
 	},
 });
 
+// monte esta aplicacion(componente) en un elemento html
 app.mount('#myApp');
