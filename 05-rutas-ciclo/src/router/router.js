@@ -1,15 +1,24 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 
-import AboutPage from '../modules/pokemon/pages/AboutPage.vue';
-import ListPage from '../modules/pokemon/pages/ListPage.vue';
-import PokemonPage from '../modules/pokemon/pages/PokemonPage.vue';
-import NoPageFound from '../modules/shared/pages/NoPageFound.vue';
-
 const routes = [
-	{ path: '/', component: ListPage },
-	{ path: '/about', component: AboutPage },
-	{ path: '/id', component: PokemonPage },
-	{ path: '/:pathMatch(.*)*', component: NoPageFound },
+	{
+		path: '/',
+		component: import(
+			/* webpackChunkName: "ListPage" */ '../modules/pokemon/pages/ListPage'
+		) /** con esto hacemos q se los componentes se llamen cuando entre en su ruta, asi repartimos la carga de datos, a esto se le llama lazyload */,
+	},
+	{
+		path: '/about',
+		component: () => import(/* webpackChunkName: "AboutPageweb" */ '../modules/pokemon/pages/AboutPage'),
+	},
+	{
+		path: '/id',
+		component: () => import(/* webpackChunkName: "PokemonPage" */ '../modules/pokemon/pages/PokemonPage'),
+	},
+	{
+		path: '/:pathMatch(.*)*',
+		component: import(/* webpackChunkName: "NoPageFound" */ '../modules/shared/pages/NoPageFound'),
+	},
 ];
 
 const router = createRouter({
