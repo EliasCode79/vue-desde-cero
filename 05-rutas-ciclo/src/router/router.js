@@ -13,8 +13,15 @@ const routes = [
 		component: () => import(/* webpackChunkName: "AboutPageweb" */ '../modules/pokemon/pages/AboutPage'),
 	},
 	{
-		path: '/id',
+		path: '/:id',
+		name: 'pokemonId',
 		component: () => import(/* webpackChunkName: "PokemonPage" */ '../modules/pokemon/pages/PokemonPage'),
+		props: (route) => {
+			// console.log(route);
+			// lo q retornemos (return objeto) sera un property si esta declarada en el componente como props y si no esta sera un attributo
+			const id = Number(route.params.id); // la url siempre es un string en este caso sabemos q necesitamos un numbero y lo parseamos a numero
+			return isNaN(id) ? { id: 1 } : { id }; // en casa de q no sea un numero le decimos q el id es 1 y si es un numero q mande ese numero  a la props.
+		},
 	},
 	{
 		path: '/:pathMatch(.*)*',
