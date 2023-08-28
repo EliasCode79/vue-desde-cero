@@ -3,9 +3,10 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 const routes = [
 	{
 		path: '/',
-		component: import(
-			/* webpackChunkName: "ListPage" */ '../modules/pokemon/pages/ListPage'
-		) /** con esto hacemos q se los componentes se llamen cuando entre en su ruta, asi repartimos la carga de datos, a esto se le llama lazyload */,
+		component: () =>
+			import(
+				/* webpackChunkName: "ListPage" */ '../modules/pokemon/pages/ListPage'
+			) /** con esto hacemos q se los componentes se llamen cuando entre en su ruta, asi repartimos la carga de datos, a esto se le llama lazyload */,
 	},
 	{
 		path: '/about',
