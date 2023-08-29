@@ -3,18 +3,25 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 const routes = [
 	{
 		path: '/',
+		name: 'home',
+		redirect: '/home',
+	},
+	{
+		path: '/home',
 		component: () =>
 			import(
 				/* webpackChunkName: "ListPage" */ '../modules/pokemon/pages/ListPage'
 			) /** con esto hacemos q se los componentes se llamen cuando entre en su ruta, asi repartimos la carga de datos, a esto se le llama lazyload */,
+		name: 'home,',
 	},
 	{
 		path: '/about',
 		component: () => import(/* webpackChunkName: "AboutPageweb" */ '../modules/pokemon/pages/AboutPage'),
+		name: 'about',
 	},
 	{
-		path: '/:id',
-		name: 'pokemonId',
+		path: '/pokemonid/:id',
+		name: 'pokemon-id',
 		component: () => import(/* webpackChunkName: "PokemonPage" */ '../modules/pokemon/pages/PokemonPage'),
 		props: (route) => {
 			// console.log(route);
@@ -25,7 +32,7 @@ const routes = [
 	},
 	{
 		path: '/:pathMatch(.*)*',
-		component: import(/* webpackChunkName: "NoPageFound" */ '../modules/shared/pages/NoPageFound'),
+		component: () => import(/* webpackChunkName: "NoPageFound" */ '../modules/shared/pages/NoPageFound'),
 	},
 ];
 
