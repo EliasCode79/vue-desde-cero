@@ -11,7 +11,7 @@ const routes = [
 			import(
 				/* webpackChunkName: "ListPage" */ '../modules/pokemon/pages/ListPage'
 			) /** con esto hacemos q se los componentes se llamen cuando entre en su ruta, asi repartimos la carga de datos, a esto se le llama lazyload */,
-		name: 'home,',
+		name: 'home',
 	},
 	{
 		path: '/about',
